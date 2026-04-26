@@ -30,4 +30,48 @@ These are my favorite extensions:
 
 When using the Hot Edge extension I like to disable the Hot Corner in Multitasking inside Settings.
 
+## 4. Layer System Packages
 
+```
+rpm-ostree install gnome-tweaks libvirt-client virt-manager
+```
+
+## 5. Installing a Password Manager and a 2FA Authenticator Application
+
+I like to use [Proton Pass](https://proton.me/pass) as Password Manager and [Ente](https://ente.com/auth/) as 2FA Authenticator.
+
+You can install Proton Pass as a Flatpak or install it inside a toolbox. I prefer using it inside a toolbox and create the .desktop shortcut. Here are the steps:
+
+```bash
+toolbox create -c proton-pass-box
+toolbox enter proton-pass-box
+sudo dnf update && sudo dnf install -y webkit2gtk4.1
+```
+
+You can verify if the Proton Pass is working inside the toolbox through the following command:
+
+```bash
+proton-pass
+```
+
+And to create the .desktop shortcut:
+
+```bash
+cd ~/.local/share/applications
+touch proton-pass.desktop
+vi proton-pass.desktop
+```
+
+```
+[Desktop Entry]
+Type=Application
+Name=Proton Pass
+Exec=toolbox run -c proton-pass-box proton-pass %f
+Icon=/path/to/proton-pass-icon.svg
+Terminal=false
+Categories=Utility;
+```
+
+```bash
+update-desktop-database ~/.local/share/applications
+```
