@@ -75,3 +75,32 @@ Categories=Utility;
 ```bash
 update-desktop-database ~/.local/share/applications
 ```
+
+## 6. Installing Anki
+
+You can also use [Anki](https://apps.ankiweb.net/) inside a toolbox.
+
+```bash
+toolbox create -c anki-box
+toolbox enter anki-box
+sudo dnf install -y zstd qt6-qtwayland libXcomposite libXcursor libXi libXtst libXrandr libxcrypt-compat xdg-utils libatomic libxkbfile mpv
+```
+```
+cd ~/.local/share/applications
+touch anki.desktop
+vi anki.desktop
+```
+
+```                      
+[Desktop Entry]
+Type=Application
+Name=Anki
+Exec=toolbox run -c anki-box anki %f
+Icon=/path/to/anki-icon.svg
+Terminal=false
+Categories=Utility;
+```
+
+```bash
+update-desktop-database ~/.local/share/applications
+```
