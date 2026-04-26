@@ -104,3 +104,7 @@ Categories=Utility;
 ```bash
 update-desktop-database ~/.local/share/applications
 ```
+
+## References
+
+[Fedora Atomic Desktops User Guide](https://docs.fedoraproject.org/en-US/atomic-desktops/)
