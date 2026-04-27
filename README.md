@@ -105,6 +105,34 @@ Categories=Utility;
 update-desktop-database ~/.local/share/applications
 ```
 
+# 7. Change hostname
+
+```bash
+sudo hostnamectl set-hostname <new-name>
+```
+
+# 8. Fastest Mirrors and Max Parallel Downloads
+
+```bash
+sudo nano /etc/dnf/dnf.conf
+fastestmirror=True
+max_parallel_downloads=10
+```
+
+# 9. .NET Toolbox
+
+```bash
+toolbox create -c dotnet-dev
+toolbox enter dotnet-dev
+sudo dnf install -y dotnet-sdk-10.0 aspnetcore-runtime-10.0 dotnet-runtime-10.0
+```
+
+If you want to use a toolbox with Fedora Rawhide 
+
+```bash
+toolbox create -c dotnet-rawhide --image registry.fedoraproject.org/fedora-toolbox:rawhide
+toolbox enter dotnet-rawhide
+
 ## References
 
 [Fedora Atomic Desktops User Guide](https://docs.fedoraproject.org/en-US/atomic-desktops/)
