@@ -1,6 +1,6 @@
 # Fedora Silverblue Post-Installation
 
-These are my Fedora Silverblue post-installation steps for my use case.
+These are my personal Fedora Silverblue post-installation steps tailored for my use case.
 
 ## 1. System Upgrade
 
@@ -10,13 +10,19 @@ You can update the system through GNOME Software or using the following command:
 rpm-ostree upgrade
 ```
 
-## 2. Enable Flathub
+## 2. Change Hostname
+
+```bash
+sudo hostnamectl set-hostname <new-name>
+```
+
+## 3. Enable Flathub
 
 ```bash
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 ```
 
-## 3. Installing Extension
+## 4. Installing Extension
 
 These are my favorite extensions:
 
@@ -28,19 +34,22 @@ These are my favorite extensions:
 
 - [Hot Edge](https://github.com/jdoda/hotedge)
 
-When using the Hot Edge extension I like to disable the Hot Corner in Multitasking inside Settings.
+- **Note:** When using the Hot Edge extension, I recommend disabling the Hot Corner in the Multitasking section of GNOME Settings.
 
-## 4. Layer System Packages
+## 5. Layer System Packages
 
 ```
 rpm-ostree install gnome-tweaks libvirt-client virt-manager
 ```
 
-## 5. Installing a Password Manager and a 2FA Authenticator Application
+## 6. Installing a Password Manager and a 2FA Authenticator Application
 
-I like to use [Proton Pass](https://proton.me/pass) as Password Manager and [Ente](https://ente.com/auth/) as 2FA Authenticator.
+I like to use [Proton Pass](https://proton.me/pass) as my password manager and [Ente](https://ente.com/auth/) as my 2FA Authenticator.
 
-You can install Proton Pass as a Flatpak or install it inside a toolbox. I prefer using it inside a toolbox and create the .desktop shortcut. Here are the steps:
+While you can install Proton Pass as a Flatpak, I prefer using it inside a toolbox and creating a .desktop shortcut.
+
+
+**Setting up the Proton Pass Toolbox**
 
 ```bash
 toolbox create -c proton-pass-box
@@ -48,19 +57,21 @@ toolbox enter proton-pass-box
 sudo dnf update && sudo dnf install -y webkit2gtk4.1
 ```
 
-You can verify if the Proton Pass is working inside the toolbox through the following command:
+You can verify if Proton Pass is working inside the toolbox with the following command:
 
 ```bash
 proton-pass
 ```
 
-And to create the .desktop shortcut:
+**Creating the Desktop Shortcut**
 
 ```bash
 cd ~/.local/share/applications
 touch proton-pass.desktop
 vi proton-pass.desktop
 ```
+
+Add the following configuration:
 
 ```
 [Desktop Entry]
@@ -72,24 +83,33 @@ Terminal=false
 Categories=Utility;
 ```
 
+Update the application database:
+
 ```bash
 update-desktop-database ~/.local/share/applications
 ```
 
-## 6. Installing Anki
+## 7. Installing Anki
 
 You can also use [Anki](https://apps.ankiweb.net/) inside a toolbox.
+
+**Setting up the Anki Toolbox**
 
 ```bash
 toolbox create -c anki-box
 toolbox enter anki-box
 sudo dnf install -y zstd qt6-qtwayland libXcomposite libXcursor libXi libXtst libXrandr libxcrypt-compat xdg-utils libatomic libxkbfile mpv
 ```
+
+**Creating the Desktop Shortcut**
+
 ```
 cd ~/.local/share/applications
 touch anki.desktop
 vi anki.desktop
 ```
+
+Add the following configuration:
 
 ```                      
 [Desktop Entry]
@@ -101,25 +121,34 @@ Terminal=false
 Categories=Utility;
 ```
 
+Update the application database:
+
 ```bash
 update-desktop-database ~/.local/share/applications
 ```
 
-# 7. Change hostname
+## (Optional) Toolbox DNF Configuration (Fastest Mirrors and Max Parallel Downloads)
 
-```bash
-sudo hostnamectl set-hostname <new-name>
-```
-
-# 8. Fastest Mirrors and Max Parallel Downloads
+Open the DNF configuration file:
 
 ```bash
 sudo nano /etc/dnf/dnf.conf
+```
+
+Add or modify the following lines:
+
+```bash
 fastestmirror=True
 max_parallel_downloads=10
 ```
 
-# 9. .NET Toolbox
+```bash
+sudo dnf update --refresh
+```
+
+# 8. .NET Development Toolbox
+
+Set up an isolated environment for .NET development:
 
 ```bash
 toolbox create -c dotnet-dev
@@ -127,11 +156,12 @@ toolbox enter dotnet-dev
 sudo dnf install -y dotnet-sdk-10.0 aspnetcore-runtime-10.0 dotnet-runtime-10.0
 ```
 
-If you want to use a toolbox with Fedora Rawhide 
+**Optional:** Fedora Rawhide Toolbox If you want to use a toolbox with Fedora Rawhide:
 
 ```bash
 toolbox create -c dotnet-rawhide --image registry.fedoraproject.org/fedora-toolbox:rawhide
 toolbox enter dotnet-rawhide
+```
 
 ## References
 
