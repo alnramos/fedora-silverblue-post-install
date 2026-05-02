@@ -146,7 +146,7 @@ max_parallel_downloads=10
 sudo dnf update --refresh
 ```
 
-# 8. .NET Development Toolbox
+## 8. .NET Development Toolbox
 
 Set up an isolated environment for .NET development:
 
@@ -163,7 +163,7 @@ toolbox create -c dotnet-rawhide --image registry.fedoraproject.org/fedora-toolb
 toolbox enter dotnet-rawhide
 ```
 
-9. Hiding the default browser (Firefox)
+## 9. Hiding the default browser (Firefox)
 
 As mentioned in the Docs:
 
@@ -178,7 +178,7 @@ sudo update-desktop-database /usr/local/share/applications/
 flatpak install flathub org.mozilla.firefox
 ```
 
-10. Install 7zip to Encrypt Backup Files
+## 10. Install 7zip to Encrypt Backup Files
 
 Once a week, I like to compress and encrypt my backup files to store in the cloud.
 
