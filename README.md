@@ -163,6 +163,30 @@ toolbox create -c dotnet-rawhide --image registry.fedoraproject.org/fedora-toolb
 toolbox enter dotnet-rawhide
 ```
 
+9. Hiding the default browser (Firefox)
+
+As mentioned in the Docs:
+
+```bash
+sudo mkdir -p /usr/local/share/applications
+sudo cp /usr/share/applications/org.mozilla.firefox.desktop /usr/local/share/applications/
+sudo sed -i "2a\\NotShowIn=GNOME;KDE" /usr/local/share/applications/org.mozilla.firefox.desktop
+sudo update-desktop-database /usr/local/share/applications/
+```
+
+```bash
+flatpak install flathub org.mozilla.firefox
+```
+
+10. Install 7zip to Encrypt Backup Files
+
+Once a week, I like to compress and encrypt my backup files to store in the cloud.
+
+```bash
+sudo dnf install p7zip p7zip-plugins
+7z a -tzip -p -mem=AES256 backup.zip backup/
+```
+
 ## References
 
 [Fedora Atomic Desktops User Guide](https://docs.fedoraproject.org/en-US/atomic-desktops/)
