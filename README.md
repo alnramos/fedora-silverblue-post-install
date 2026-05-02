@@ -178,7 +178,7 @@ sudo update-desktop-database /usr/local/share/applications/
 flatpak install flathub org.mozilla.firefox
 ```
 
-## 10. Install 7zip to Encrypt Backup Files
+## 10. Install 7zip to Compress and Encrypt Backup Files
 
 Once a week, I like to compress and encrypt my backup files to store in the cloud.
 
